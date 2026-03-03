@@ -89,6 +89,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<section id="sec-002" class="est-form">
 	  <div class="est-full">
 		<div class="est-iframe-mask">
+<div class="est-iframe-overlay" role="button" aria-label="견적 작성 시작"></div>
 		  <iframe
 			class="est-iframe"
 			src="https://muchon.kr/application?slug=O7q9"
@@ -105,5 +106,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </main>
 
   <!-- main.js 로드하지 않음: 스크롤 진입 애니메이션 금지 -->
+
+<!-- GTM 견적영역터치후 오버레이 삭제-->
+<script>
+(function () {
+  function initEstimateFormStartTracking() {
+    var overlay = document.querySelector('.est-iframe-overlay');
+    if (!overlay) return;
+
+    var fired = false;
+
+    function fireOnce() {
+      if (fired) return;
+      fired = true;
+
+      // GTM용 커스텀 이벤트
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'estimate_form_start',
+        form_slug: 'O7q9',
+        form_src: 'https://muchon.kr/application?slug=O7q9'
+      });
+
+      // 오버레이 제거해서 이제부터 iframe 입력 가능
+      overlay.parentNode && overlay.parentNode.removeChild(overlay);
+    }
+
+    // PC 클릭 + 모바일 터치 모두 대응
+    overlay.addEventListener('click', fireOnce, { passive: true });
+    overlay.addEventListener('touchstart', fireOnce, { passive: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initEstimateFormStartTracking);
+  } else {
+    initEstimateFormStartTracking();
+  }
+})();
+</script>
+
 </body>
 </html>
