@@ -1,4 +1,4 @@
-
+﻿
 @font-face{
   font-family:'SUIT';
   src:url('https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.woff2') format('woff2');
@@ -3087,6 +3087,15 @@ body.page-estimate{
 .est-iframe-mask{
   position: relative;
   overflow: hidden;
+}
+
+/* GTM용 iframe 위 1회 클릭 감지 오버레이 */
+.est-iframe-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: transparent;
+  cursor: pointer;
 }
 
 .est-iframe{
