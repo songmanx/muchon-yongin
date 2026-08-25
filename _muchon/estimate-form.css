@@ -1,0 +1,124 @@
+/* MUCHON_MANAGER_ESTIMATE_FORM_ASSET_V1 */
+.muchon-direct-estimate {
+  padding: clamp(42px, 7vw, 88px) 0 clamp(54px, 8vw, 104px);
+  background:
+    radial-gradient(circle at 50% 0, rgba(37, 99, 235, .09), transparent 42%),
+    var(--wbg, #fff);
+  color: var(--wfg, #0a0b10);
+}
+
+.muchon-estimate-wrap { max-width: 920px; }
+
+.muchon-estimate-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  padding: clamp(24px, 5vw, 48px);
+  border: 1px solid var(--wline, rgba(10, 11, 16, .12));
+  border-radius: var(--r, 24px);
+  background: rgba(255, 255, 255, .98);
+  box-shadow: 0 26px 70px rgba(15, 23, 42, .12);
+}
+
+.muchon-field { display: flex; min-width: 0; flex-direction: column; gap: 9px; }
+.muchon-field--wide { grid-column: 1 / -1; }
+.muchon-field label {
+  color: var(--wfg, #0a0b10);
+  font-size: 15px;
+  font-weight: 800;
+}
+.muchon-field label.required::after { content: " *"; color: #dc2626; }
+.muchon-field input,
+.muchon-field textarea {
+  width: 100%;
+  border: 1px solid rgba(15, 23, 42, .17);
+  border-radius: 14px;
+  background: #fff;
+  color: #0f172a;
+  font: inherit;
+  font-size: 16px;
+  outline: none;
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+.muchon-field input { height: 56px; padding: 0 16px; }
+.muchon-field textarea { min-height: 132px; padding: 16px; resize: vertical; line-height: 1.65; }
+.muchon-field input:focus,
+.muchon-field textarea:focus {
+  border-color: var(--blue, #2563eb);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, .12);
+}
+
+.muchon-turnstile-wrap {
+  grid-column: 1 / -1;
+  min-height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.muchon-terms-row {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--wmuted, rgba(10, 11, 16, .7));
+  font-size: 14px;
+}
+.muchon-terms-row label { display: flex; align-items: center; gap: 9px; cursor: pointer; }
+.muchon-terms-row input { width: 18px; height: 18px; flex: 0 0 auto; accent-color: var(--blue, #2563eb); }
+.muchon-terms-link {
+  flex: 0 0 auto;
+  color: var(--blueDeep, #1d4ed8);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.muchon-submit-button {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 66px;
+  margin-top: 4px;
+  border: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--blue, #2563eb), var(--blueDeep, #1d4ed8));
+  color: #fff;
+  font: inherit;
+  font-size: clamp(17px, 2vw, 20px);
+  font-weight: 900;
+  letter-spacing: -.01em;
+  cursor: pointer;
+  box-shadow: 0 16px 34px rgba(37, 99, 235, .28), inset 0 1px rgba(255, 255, 255, .22);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.muchon-submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+  box-shadow: 0 20px 42px rgba(37, 99, 235, .34), inset 0 1px rgba(255, 255, 255, .24);
+}
+.muchon-submit-button:focus-visible { outline: 4px solid rgba(37, 99, 235, .22); outline-offset: 3px; }
+.muchon-submit-button:disabled { cursor: wait; opacity: .68; transform: none; }
+.muchon-form-status {
+  grid-column: 1 / -1;
+  min-height: 24px;
+  margin: -4px 0 0;
+  color: #475569;
+  font-size: 15px;
+  font-weight: 800;
+  text-align: center;
+}
+.muchon-form-status[data-state="success"] { color: #047857; }
+.muchon-form-status[data-state="error"] { color: #dc2626; }
+.muchon-form-status[data-state="pending"] { color: var(--blueDeep, #1d4ed8); }
+
+@media (max-width: 680px) {
+  .muchon-estimate-form { grid-template-columns: 1fr; gap: 18px; padding: 22px 18px; border-radius: 20px; }
+  .muchon-field--wide { grid-column: auto; }
+  .muchon-turnstile-wrap,
+  .muchon-terms-row,
+  .muchon-submit-button,
+  .muchon-form-status { grid-column: 1; }
+  .muchon-terms-row { align-items: flex-start; }
+  .muchon-terms-row label { align-items: flex-start; }
+  .muchon-submit-button { min-height: 60px; }
+}
